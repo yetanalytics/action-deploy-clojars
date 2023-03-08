@@ -1,0 +1,30 @@
+name: CI to test the deploy-clojars action
+
+on:
+  push:
+    branches:
+      - '*'
+    tags:
+      - 'v*'
+
+jobs:
+  deploy-clojars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Get an env
+        uses: yetanalytics/action-setup-env@38684d55cd2665a2ffc4e493a95ecb9c86b8e3d0
+      
+      - name: Test deployment
+        uses: yetanalytics/action-deploy-clojars@e223fc0766ea6ea247e77f2ea72c33c0033805ca
+        with:
+          artifact-id: 'actions'
+          version: 'LATEST'
+          resource-dirs: '[]'
+          publish: 'false'
+          # We're not actually publishing to Clojars so use dummy values
+          clojars-username: 'foo'
+          clojars-deploy-token: 'bar'
+
