@@ -15,10 +15,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Get an env
-        uses: yetanalytics/action-setup-env@38684d55cd2665a2ffc4e493a95ecb9c86b8e3d0
+        uses: yetanalytics/action-setup-env@v1
       
       - name: Test deployment
-        uses: yetanalytics/action-deploy-clojars@e223fc0766ea6ea247e77f2ea72c33c0033805ca
+        uses: yetanalytics/action-deploy-clojars@v1
         with:
           artifact-id: 'actions'
           version: 'LATEST'
