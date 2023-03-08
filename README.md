@@ -5,8 +5,11 @@ When invoked, the action will compile a JAR file that will be deployed to Clojar
 
 ```yaml
     steps:
+      - name: Setup environment # You will need to call this action first
+        uses: yetanalytics/action-setup-env@<tag>
+
       - name: Deploy to clojars
-        uses: yetanalytics/actions-deploy-clojars@<tag>
+        uses: yetanalytics/action-deploy-clojars@<tag>
         with:
           artifact-id: 'my-library'
           version: '0.1.0'
