@@ -20,11 +20,10 @@ jobs:
       - name: Test deployment
         uses: yetanalytics/action-deploy-clojars@v1
         with:
-          artifact-id: 'actions'
+          artifact-id: 'action-deploy-clojars'
           version: 'LATEST'
           resource-dirs: '[]'
-          publish: 'false'
-          # We're not actually publishing to Clojars so use dummy values
-          clojars-username: 'foo'
-          clojars-deploy-token: 'bar'
+          publish: 'true'
+          clojars-username: ${{ secrets.CLOJARS_USERNAME }}
+          clojars-deploy-token: ${{ secrets.CLOJARS_PASSWORD }}
 
