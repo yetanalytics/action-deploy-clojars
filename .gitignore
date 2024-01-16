@@ -1,1 +1,10 @@
 .DS_Store
+.calva/
+.clj-kondo/*
+!.clj-kondo/config.edn
+.cpcache/
+.lsp/
+.nrepl/
+.nrepl-port
+logs/
+target/
