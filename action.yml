@@ -11,7 +11,21 @@ inputs:
   artifact-id:
     description: The Clojars Artifact ID (i.e. the name of the lib itself)
     required: true
+
+  license-name:
+    description: >
+      The license that the project is distributed under.
+      Defaults to 'Apache-2.0'.
+    required: false
+    default: 'Apache-2.0'
   
+  license-url:
+    description: >
+      A URL that links to the text of the license.
+      Defaults to 'https://www.apache.org/licenses/LICENSE-2.0.txt'.
+    required: false
+    default: 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+
   version:
     description: The version string.
     required: true
@@ -68,8 +82,8 @@ runs:
         :pom-data
           '[:licenses
             [:license
-             [:name "Apache-2.0"]
-             [:url "https://www.apache.org/licenses/LICENSE-2.0.txt"]]]'
+             [:name "${{ inputs.license-name }}"]
+             [:url "${{ inputs.license-url }}"]]]'
         :lib ${{ inputs.group-id }}/${{ inputs.artifact-id }}
         :version '"${{ inputs.version }}"'
         :src-dirs '${{ inputs.src-dirs }}'
