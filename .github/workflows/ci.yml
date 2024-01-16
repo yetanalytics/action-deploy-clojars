@@ -18,7 +18,7 @@ jobs:
         uses: yetanalytics/action-setup-env@v1
       
       - name: Test deployment
-        uses: yetanalytics/action-deploy-clojars@v1.1.0-SNAPSHOT
+        uses: yetanalytics/action-deploy-clojars@v1.1.0-SNAPSHOT-2
         with:
           artifact-id: 'actions'
           version: 'LATEST'
