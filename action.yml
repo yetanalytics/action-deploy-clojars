@@ -65,6 +65,11 @@ runs:
       run: >
         clojure -Sdeps ${{ steps.build-aliases.outputs.aliases }}
         -X:build jar
+        :pom-data
+          '[:licenses
+            [:license
+             [:name "Apache-2.0"]
+             [:url "https://www.apache.org/licenses/LICENSE-2.0.txt"]]]'
         :lib ${{ inputs.group-id }}/${{ inputs.artifact-id }}
         :version '"${{ inputs.version }}"'
         :src-dirs '${{ inputs.src-dirs }}'
@@ -95,4 +100,3 @@ runs:
       env:
         CLOJARS_USERNAME: ${{ inputs.clojars-username }}
         CLOJARS_PASSWORD: ${{ inputs.clojars-deploy-token }}
-
