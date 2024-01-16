@@ -80,10 +80,10 @@ runs:
         clojure -Sdeps ${{ steps.build-aliases.outputs.aliases }}
         -X:build jar
         :pom-data
-          '[:licenses
-            [:license
-             [:name "${{ inputs.license-name }}"]
-             [:url "${{ inputs.license-url }}"]]]'
+          '[[:licenses
+             [:license
+              [:name "${{ inputs.license-name }}"]
+              [:url "${{ inputs.license-url }}"]]]]'
         :lib ${{ inputs.group-id }}/${{ inputs.artifact-id }}
         :version '"${{ inputs.version }}"'
         :src-dirs '${{ inputs.src-dirs }}'
