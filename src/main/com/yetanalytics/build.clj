@@ -42,7 +42,7 @@
    | `version`       | Version string. No default.
    | `src-dirs`      | Source directory vector. Defaults to `[\"src/main\"]`.
    | `resource-dirs` | Resource directory vector. Defaults to `[\"resources\"]`.
-   | `license-names` | License name. Defaults to `Apache-2.0`.
+   | `license-name`  | License name. Defaults to `Apache-2.0`.
    | `license-url`   | License URL. Defaults to `https://www.apache.org/licenses/LICENSE-2.0.txt`.
    | `github-repo`   | Github repository name. No default.
    | `github-sha`    | Github SHA string. No default."
