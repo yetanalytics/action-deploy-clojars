@@ -67,7 +67,7 @@
                   :tag                 github-sha
                   :connection          (github-conn github-repo)
                   :developerConnection (github-dev-conn github-repo)}
-        pom-data [[:license
+        pom-data [[:licenses
                    [:license
                     [:name license-name]
                     [:url license-url]]]]
