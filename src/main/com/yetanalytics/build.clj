@@ -15,7 +15,7 @@
 (defn- basis []
   (b/create-basis {}))
 
-(def class-dir "target/classes2")
+(def class-dir "target/classes")
 
 (defn- library-name [group-id artifact-id]
   (format "%s/%s" group-id artifact-id))
