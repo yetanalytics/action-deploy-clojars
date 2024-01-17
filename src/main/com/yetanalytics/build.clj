@@ -62,6 +62,7 @@
          license-url   default-license-url}}]
   (let [all-dirs (vec (concat src-dirs resource-dirs))
         lib-name (library-name group-id artifact-id)
+        lib-sym  (symbol lib-name)
         scm-map  {:url                 (github-url github-repo)
                   :tag                 github-sha
                   :connection          (github-conn github-repo)
@@ -75,7 +76,7 @@
     (b/write-pom
      {:basis         (basis)
       :class-dir     class-dir
-      :lib           (symbol lib-name)
+      :lib           lib-sym
       :version       version
       :scm           scm-map
       :src-dirs      src-dirs
@@ -105,10 +106,11 @@
            version]
     :or {group-id default-group-id}}]
   (let [lib-name (library-name group-id artifact-id)
+        lib-sym  (symbol lib-name)
         jar-name (jar-file-name artifact-id version)]
     (dd/deploy {:installer :remote
                 :artifact  (b/resolve-path jar-name)
-                :pom-file  (b/pom-path {:lib       lib-name
+                :pom-file  (b/pom-path {:lib       lib-sym
                                         :class-dir class-dir})})))
 
 (comment
