@@ -70,7 +70,8 @@ runs:
         echo "aliases='{:aliases
         {:build
         {:replace-deps {com.yetanalytics/action-deploy-clojars
-        {:git/url \"https://github.com/yetanalytics/action-deploy-clojars.git\" :git/tag \"v2.0.0-SNAPSHOT-2\" :git/sha \"13b1cfa\"}}
+        {:git/url \"https://github.com/yetanalytics/action-deploy-clojars.git\"
+         :git/sha \"fb98311a5132d5fe04794924d3bbca41ab7e805a\"}}
         :ns-default com.yetanalytics.build }}}'"
         >> $GITHUB_OUTPUT
     
