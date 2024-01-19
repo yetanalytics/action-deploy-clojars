@@ -67,18 +67,17 @@ runs:
       id: 'build-aliases'
       shell: bash
       run: >-
-        echo "aliases='{:aliases
-        {:build
-        {:replace-deps {com.yetanalytics/action-deploy-clojars
-        {:git/url \"https://github.com/yetanalytics/action-deploy-clojars.git\" :git/sha \"c318fb8d2622dca4692c77bfa829897f410e589e\"}}
-        :ns-default com.yetanalytics.build }}}'"
+        echo "aliases='{:aliases {
+        :action-deps {:replace-deps {com.yetanalytics/clojars-build {:mvn/version "v1.0.0-SNAPSHOT"}}}
+        :build {:exec-fn com.yetanalytics.clojars-build/jar}
+        :deploy {:exec-fn com.yetanaltyics.clojars-build/deploy}}}'"
         >> $GITHUB_OUTPUT
     
     - name: Build JAR file
       shell: bash
       run: >
         clojure -Sdeps ${{ steps.build-aliases.outputs.aliases }}
-        -X:build jar
+        -X:action-deps:build jar
         :group-id '"${{ inputs.group-id }}"'
         :artifact-id '"${{ inputs.artifact-id }}"'
         :version '"${{ inputs.version }}"'
@@ -101,7 +100,7 @@ runs:
       if: ${{ inputs.publish == 'true' }}
       run: >
         clojure -Sdeps ${{ steps.build-aliases.outputs.aliases }}
-        -X:build deploy
+        -X:action-deps:build deploy
         :group-id '"${{ inputs.group-id }}"'
         :artifact-id '"${{ inputs.artifact-id }}"'
         :version '"${{ inputs.version }}"'
