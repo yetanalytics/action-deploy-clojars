@@ -18,7 +18,7 @@ jobs:
         uses: yetanalytics/action-setup-env@v1
       
       - name: Test deployment
-        uses: yetanalytics/action-deploy-clojars@v1
+        uses: yetanalytics/action-deploy-clojars@v2.0.0-SNAPSHOT
         with:
           artifact-id: 'actions'
           version: 'LATEST'
@@ -27,4 +27,3 @@ jobs:
           # We're not actually publishing to Clojars so use dummy values
           clojars-username: 'foo'
           clojars-deploy-token: 'bar'
-

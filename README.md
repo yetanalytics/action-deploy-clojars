@@ -26,7 +26,8 @@ Name | Description
 `clojars-username`     | The Clojars username (should be a GitHub secret). **Required**
 `clojars-deploy-token` | The Clojars deploy token (should be a GitHub secret). **Required**
 `group-id`             | The Clojars Group ID. Defaults to `'com.yetanalytics'`.
+`license-name`         | The license that the project is distributed under. Defaults to `Apache-2.0`.
+`license-url`          | A URL that links to the text of the license. Defaults to `https://www.apache.org/licenses/LICENSE-2.0.txt`.
 `src-dirs`             | A quoted array of the source directories. Defaults to `'["src/main"]'`.
 `resource-dirs`        | A quoted array of the resource directories. Defaults to `'["resources"]'`. Pass `'[]'` if no resource directories exist.
 `publish`              | Whether or not to actually publish to Clojars. Default `true`; turn off for debugging.
-
