@@ -16,14 +16,13 @@ jobs:
 
       - name: Get an env
         uses: yetanalytics/action-setup-env@v1
-      
+
       - name: Test deployment
-        uses: yetanalytics/action-deploy-clojars@v2.0.0-SNAPSHOT
+        uses: yetanalytics/action-deploy-clojars@v1.1.0
         with:
-          artifact-id: 'actions'
-          version: 'LATEST'
+          artifact-id: 'action-deploy-clojars'
+          version: 'LATEST-SNAPSHOT'
           resource-dirs: '[]'
-          publish: 'false'
-          # We're not actually publishing to Clojars so use dummy values
-          clojars-username: 'foo'
-          clojars-deploy-token: 'bar'
+          publish: 'true'
+          clojars-username: ${{ secrets.CLOJARS_USERNAME }}
+          clojars-deploy-token: ${{ secrets.CLOJARS_PASSWORD }}
