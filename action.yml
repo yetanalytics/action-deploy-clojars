@@ -68,7 +68,7 @@ runs:
       shell: bash
       run: >-
         echo "aliases='{:aliases {
-        :action-deps {:replace-deps {com.yetanalytics/clojars-build {:mvn/version "LATEST-SNAPSHOT"}}}
+        :action-deps {:replace-deps {com.yetanalytics/clojars-build {:mvn/version \"LATEST-SNAPSHOT\"}}}
         :build {:exec-fn com.yetanalytics.clojars-build/jar}
         :deploy {:exec-fn com.yetanaltyics.clojars-build/deploy}}}'"
         >> $GITHUB_OUTPUT
