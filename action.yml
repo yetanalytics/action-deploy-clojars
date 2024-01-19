@@ -68,7 +68,7 @@ runs:
       shell: bash
       run: >-
         echo "aliases='{:aliases {
-        :action-deps {:replace-deps {com.yetanalytics/clojars-build {:mvn/version \"LATEST-SNAPSHOT\"}}}
+        :action-deps {:replace-deps {com.yetanalytics/clojars-build {:mvn/version \"LATEST-SNAPSHOT\"}} :ns-default com.yet}
         :build {:exec-fn com.yetanalytics.clojars-build/jar}
         :deploy {:exec-fn com.yetanaltyics.clojars-build/deploy}}}'"
         >> $GITHUB_OUTPUT
@@ -77,7 +77,7 @@ runs:
       shell: bash
       run: >
         clojure -Sdeps ${{ steps.build-aliases.outputs.aliases }}
-        -X:action-deps:build jar
+        -X:action-deps:build
         :group-id '"${{ inputs.group-id }}"'
         :artifact-id '"${{ inputs.artifact-id }}"'
         :version '"${{ inputs.version }}"'
@@ -100,7 +100,7 @@ runs:
       if: ${{ inputs.publish == 'true' }}
       run: >
         clojure -Sdeps ${{ steps.build-aliases.outputs.aliases }}
-        -X:action-deps:build deploy
+        -X:action-deps:deploy
         :group-id '"${{ inputs.group-id }}"'
         :artifact-id '"${{ inputs.artifact-id }}"'
         :version '"${{ inputs.version }}"'
