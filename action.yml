@@ -67,33 +67,26 @@ runs:
       id: 'build-aliases'
       shell: bash
       run: >-
-        echo "aliases='{:aliases
-        {:build
-        {:replace-deps {io.github.seancorfield/build-clj
-        {:git/tag \"v0.8.3\" :git/sha \"7ac1f8d\" }}
-        :ns-default org.corfield.build }}}'"
+        echo "aliases='{:aliases {
+        :action-deps {:replace-deps {com.yetanalytics/clojars-build {:mvn/version \"1.0.0\"}} :ns-default com.yet}
+        :build {:exec-fn com.yetanalytics.clojars-build/jar}
+        :deploy {:exec-fn com.yetanalytics.clojars-build/deploy}}}'"
         >> $GITHUB_OUTPUT
     
     - name: Build JAR file
       shell: bash
       run: >
         clojure -Sdeps ${{ steps.build-aliases.outputs.aliases }}
-        -X:build jar
-        :pom-data
-          '[:licenses
-            [:license
-             [:name "${{ inputs.license-name }}"]
-             [:url "${{ inputs.license-url }}"]]]'
-        :lib ${{ inputs.group-id }}/${{ inputs.artifact-id }}
+        -X:action-deps:build
+        :group-id '"${{ inputs.group-id }}"'
+        :artifact-id '"${{ inputs.artifact-id }}"'
         :version '"${{ inputs.version }}"'
         :src-dirs '${{ inputs.src-dirs }}'
         :resource-dirs '${{ inputs.resource-dirs }}'
-        :scm '{
-          :url "https://github.com/${{ github.repository }}"
-          :tag "${{ github.sha }}"
-          :connection "scm:git:git://github.com/${{ github.repository }}.git"
-          :developerConnection "scm:git:ssh://git@github.com/${{ github.repository }}.git"
-        }'
+        :license-name '"${{ inputs.license-name }}"'
+        :license-url '"${{ inputs.license-url }}"'
+        :github-repo '"${{ github.repository }}"'
+        :github-sha '"${{ github.sha }}"'
     
     # This is a debug step that exists for sanity checking
     - name: Publish artifact
@@ -106,10 +99,10 @@ runs:
       shell: bash
       if: ${{ inputs.publish == 'true' }}
       run: >
-        clojure
-        -Sdeps ${{ steps.build-aliases.outputs.aliases }}
-        -X:build deploy
-        :lib ${{ inputs.group-id }}/${{ inputs.artifact-id }}
+        clojure -Sdeps ${{ steps.build-aliases.outputs.aliases }}
+        -X:action-deps:deploy
+        :group-id '"${{ inputs.group-id }}"'
+        :artifact-id '"${{ inputs.artifact-id }}"'
         :version '"${{ inputs.version }}"'
       env:
         CLOJARS_USERNAME: ${{ inputs.clojars-username }}
