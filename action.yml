@@ -11,7 +11,7 @@ inputs:
   artifact-id:
     description: The Clojars Artifact ID (i.e. the name of the lib itself)
     required: true
-
+  
   license-name:
     description: >
       The license that the project is distributed under.
@@ -25,7 +25,7 @@ inputs:
       Defaults to 'https://www.apache.org/licenses/LICENSE-2.0.txt'.
     required: false
     default: 'https://www.apache.org/licenses/LICENSE-2.0.txt'
-
+  
   version:
     description: The version string.
     required: true
@@ -55,7 +55,7 @@ inputs:
   clojars-username:
     description: The Clojars username (should be stored as a GitHub secret).
     required: true
-
+  
   clojars-deploy-token:
     description: The Clojars deploy token (should be stored as a GitHub secret).
     required: true
@@ -90,11 +90,11 @@ runs:
     
     # This is a debug step that exists for sanity checking
     - name: Publish artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ inputs.artifact-id }}-artifact-${{ inputs.version }}
         path: target/${{ inputs.artifact-id }}-${{ inputs.version }}.jar
-
+    
     - name: Deploy to Clojars
       shell: bash
       if: ${{ inputs.publish == 'true' }}
